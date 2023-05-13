@@ -1,10 +1,13 @@
 import { type NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { createUser, loginUser } from "~/lib/mongo/auth";
 import { realm } from "~/lib/mongo/init";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
   const [mode, setMode] = useState<"Login" | "Register">("Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +32,10 @@ const Home: NextPage = () => {
       // @ts-expect-error error is a http body message
       toast.error(error.message as string);
       return;
+    }
+
+    if (mode === "Login") {
+      void router.push("/");
     }
 
     toast.success(
