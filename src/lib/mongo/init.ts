@@ -7,4 +7,5 @@ const globalForRealm = globalThis as unknown as {
 
 export const realm =
   globalForRealm.realm ?? new Realm.App({ id: env.NEXT_PUBLIC_REALM_APP_ID });
-if (env.NODE_ENV !== "production") globalForRealm.realm = realm;
+
+globalForRealm.realm = realm;
