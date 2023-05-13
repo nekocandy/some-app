@@ -27,8 +27,8 @@ const appointments = [
 export default function DashboardPage() {
   // verify auth status
   useEffect(() => {
-    if (realm.currentUser) {
-      void router.push("/dashboard");
+    if (!realm.currentUser) {
+      void router.push("/");
     }
   }, []);
 
