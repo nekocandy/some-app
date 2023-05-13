@@ -64,7 +64,7 @@ export default function Sidebar() {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-between py-8 pr-8">
-      <Link href="/">
+      <Link href={realm.currentUser ? "/dashboard" : "/"}>
         <div className="flex items-center gap-2">
           <div className="h-10 w-10 rounded-full bg-[#0A4D68]" />
           <span className="text-xl font-bold tracking-wide text-[#0A4D68]">
