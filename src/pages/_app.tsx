@@ -1,14 +1,17 @@
 import { type AppType } from "next/app";
 
+import { ToastContainer } from "react-toastify";
+
 import { api } from "~/utils/api";
 import Sidebar from "~/components/Navigation/Sidebar";
 
 import "~/styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => (
   <div className="h-screen bg-[#002B5B] font-poppins">
     <main className="flex h-screen gap-2">
-      <div className="flex h-full justify-center overflow-y-auto px-4 bg-[#57C5B6] rounded-r-xl">
+      <div className="flex h-full justify-center overflow-y-auto rounded-r-xl bg-[#57C5B6] px-4">
         <Sidebar />
       </div>
 
@@ -16,6 +19,8 @@ const MyApp: AppType = ({ Component, pageProps }) => (
         <Component {...pageProps} />
       </div>
     </main>
+
+    <ToastContainer />
   </div>
 );
 
