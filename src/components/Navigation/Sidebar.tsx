@@ -56,6 +56,12 @@ export default function Sidebar() {
     }
   }, [router]);
 
+  const logout = async () => {
+    await realm.currentUser?.logOut();
+    localStorage.removeItem("authToken");
+    await router.push("/");
+  };
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-between py-8 pr-8">
       <Link href="/">
@@ -90,7 +96,10 @@ export default function Sidebar() {
         )}
       >
         <button className={clsx(router.pathname === "/" && "hidden")}>
-          <div className="flex gap-2 rounded-md px-6 py-3 hover:bg-red-600/90">
+          <div
+            className="flex gap-2 rounded-md px-4 py-3 hover:bg-red-600/90"
+            onClick={() => void logout()}
+          >
             <IconLogout2 />
             <span className="text-lg font-medium tracking-wide ">Logout</span>
           </div>
