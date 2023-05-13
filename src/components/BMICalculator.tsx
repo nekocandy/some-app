@@ -11,7 +11,9 @@ export default function BMICalculator() {
       return;
     }
 
-    setBMI(weight / (height * height));
+    const heightsInMeter = height / 100;
+    const calculatedBMI = weight / (heightsInMeter * heightsInMeter);
+    setBMI(parseFloat(calculatedBMI.toFixed(2)));
   }, [height, weight]);
 
   return (
