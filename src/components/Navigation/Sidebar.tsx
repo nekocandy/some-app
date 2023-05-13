@@ -6,7 +6,7 @@ import {
   IconId,
   IconLogout2,
   IconMedicalCross,
-  IconUserCircle
+  IconUserCircle,
 } from "@tabler/icons-react";
 import clsx from "clsx";
 import Link from "next/link";
@@ -74,7 +74,12 @@ export default function Sidebar() {
         </div>
       )}
 
-      <div className="flex w-full items-center justify-between">
+      <div
+        className={clsx(
+          "flex w-full items-center justify-between",
+          router.pathname === "/" && "hidden"
+        )}
+      >
         <button className={clsx(router.pathname === "/" && "hidden")}>
           <div className="flex gap-2 rounded-md px-6 py-3 hover:bg-red-600/90">
             <IconLogout2 />
@@ -82,8 +87,23 @@ export default function Sidebar() {
           </div>
         </button>
 
-        <div>
-          <IconBrandMongodb />
+        <div className="rounded-full bg-[#002b5b] p-2">
+          <IconBrandMongodb color="#57C5B6" />
+        </div>
+      </div>
+
+      <div
+        className={clsx(
+          "flex w-full items-center justify-center gap-4",
+          router.pathname !== "/" && "hidden"
+        )}
+      >
+        <div className="rounded-full bg-[#002b5b] p-2">
+          <IconBrandMongodb color="#57C5B6" />
+        </div>
+        <div className="flex flex-col items-center gap-1 text-xs">
+          <span>Auth Powered By</span>
+          <span className="text-sm font-bold">MongoDB Atlas</span>
         </div>
       </div>
     </div>
