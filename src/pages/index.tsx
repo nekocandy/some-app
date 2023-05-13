@@ -13,7 +13,9 @@ const Home: NextPage = () => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    console.log("current user", realm.currentUser);
+    if (realm.currentUser) {
+      void router.push("/dashboard");
+    }
   }, []);
 
   const toggleMode = () => {
