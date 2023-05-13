@@ -5,12 +5,11 @@ import {
   IconPlus,
   IconRefresh,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import router from "next/router";
 import { useEffect } from "react";
 
 import { DayPicker } from "react-day-picker";
-import BMICalculator from "~/components/BMICalculator";
-import Certificates from "~/components/Certificates";
 import HomepageSidebar from "~/components/HompageSidebar";
 import { realm } from "~/lib/mongo/init";
 
@@ -43,12 +42,14 @@ export default function DashboardPage() {
             {/* title */}
             <div className="text-2xl font-medium text-white">Dashboard</div>
 
-            <div className="flex w-full items-center justify-center gap-4 rounded-xl border-4 border-[#57C5B6] bg-[#0A4D68] py-6">
-              <IconHeartbeat color="#00FFCA" className="h-16 w-16" />
-              <span className="text-2xl font-light text-[#00FFCA]">
-                Get your health status
-              </span>
-            </div>
+            <Link href="/health-status" className="group">
+              <div className=" flex w-full items-center justify-center gap-4 rounded-xl border-4 border-[#57C5B6] bg-[#0A4D68] py-6 transition-all duration-500 group-hover:bg-[#0A4D68]/30 group-hover:backdrop-blur-md">
+                <IconHeartbeat className="h-16 w-16 text-[#00FFCA] group-hover:animate-pulse " />
+                <span className="text-2xl font-light text-[#00FFCA]">
+                  Get your health status
+                </span>
+              </div>
+            </Link>
 
             <div className="flex w-full items-center justify-center">
               <DayPicker
