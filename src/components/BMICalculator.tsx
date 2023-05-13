@@ -1,9 +1,30 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { getBmiFromDatabase, setBmiToDatabase } from "~/lib/mongo/database/bmi";
+import { realm } from "~/lib/mongo/init";
 
 export default function BMICalculator() {
+  const router = useRouter();
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [bmi, setBMI] = useState(0);
+
+  async function getBmi() {
+    const bmiData = await getBmiFromDatabase();
+    if (!bmiData) return;
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    setHeight(bmiData.height);
+    setWeight(bmiData.weight);
+  }
+
+  useEffect(() => {
+    if (!realm.currentUser) {
+      void router.push("/");
+    }
+
+    void getBmi();
+  }, []);
 
   useEffect(() => {
     if (!height || !weight) {
@@ -14,6 +35,8 @@ export default function BMICalculator() {
     const heightsInMeter = height / 100;
     const calculatedBMI = weight / (heightsInMeter * heightsInMeter);
     setBMI(parseFloat(calculatedBMI.toFixed(2)));
+
+    void setBmiToDatabase(height, weight);
   }, [height, weight]);
 
   return (
