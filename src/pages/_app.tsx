@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-day-picker/dist/style.css";
 import { useEffect } from "react";
 import { realm } from "~/lib/mongo/init";
+import Head from "next/head";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const handleKey = async () => {
@@ -49,6 +50,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   return (
     <div className="h-screen bg-[#002B5B] font-poppins">
+      <Head>
+        <title>MediMate - Thicc Thighs Save Lives</title>
+        <meta name="description" content="Thicc Thigh Save Live" />
+      </Head>
+
       <main className="flex h-screen gap-2">
         <div className="flex h-full justify-center overflow-y-auto rounded-r-xl bg-[#57C5B6] px-4">
           <Sidebar />
