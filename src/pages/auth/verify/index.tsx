@@ -20,7 +20,7 @@ export default function Verify() {
     }
 
     toast.success("Verified!");
-    void router.push("/dashboard");
+    void router.push("/");
   };
 
   useEffect(() => {
