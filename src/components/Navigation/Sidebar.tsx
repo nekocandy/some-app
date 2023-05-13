@@ -10,6 +10,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const navigation = [
   {
@@ -45,6 +46,8 @@ const navigation = [
 ];
 
 export default function Sidebar() {
+  const router = useRouter();
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-between py-8 pr-8">
       <Link href="/">
@@ -56,18 +59,20 @@ export default function Sidebar() {
         </div>
       </Link>
 
-      <div className="flex flex-col gap-2 text-black">
-        {navigation.map((nav, index) => (
-          <Link key={index} href={nav.href}>
-            <div className="flex gap-2 rounded-md px-6 py-3 hover:bg-black/10">
-              {nav.icon}
-              <span className="text-lg font-medium tracking-wide ">
-                {nav.name}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {router.pathname !== "/" && (
+        <div className="flex flex-col gap-2 text-black">
+          {navigation.map((nav, index) => (
+            <Link key={index} href={nav.href}>
+              <div className="flex gap-2 rounded-md px-6 py-3 hover:bg-black/10">
+                {nav.icon}
+                <span className="text-lg font-medium tracking-wide ">
+                  {nav.name}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
       <div className="flex w-full items-center justify-between">
         <button>
