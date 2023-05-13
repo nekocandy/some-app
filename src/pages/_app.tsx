@@ -15,7 +15,7 @@ const MyApp: AppType = ({ Component, pageProps }) => (
         <Sidebar />
       </div>
 
-      <div className="h-full w-full flex-1 overflow-y-auto py-8 pr-8">
+      <div className="h-full w-full flex-1 overflow-y-auto py-4 pl-4 pr-8">
         <Component {...pageProps} />
       </div>
     </main>
