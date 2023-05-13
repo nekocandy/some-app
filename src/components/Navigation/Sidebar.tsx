@@ -1,5 +1,5 @@
 import {
-    IconBrandMongodb,
+  IconBrandMongodb,
   IconDeviceLandlinePhone,
   IconHealthRecognition,
   IconHistory,
@@ -47,12 +47,14 @@ const navigation = [
 export default function Sidebar() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-between py-8 pr-8">
-      <div className="flex items-center gap-2">
-        <div className="h-10 w-10 rounded-full bg-[#0A4D68]" />
-        <span className="text-xl font-bold tracking-wide text-[#0A4D68]">
-          MediMedi
-        </span>
-      </div>
+      <Link href="/">
+        <div className="flex items-center gap-2">
+          <div className="h-10 w-10 rounded-full bg-[#0A4D68]" />
+          <span className="text-xl font-bold tracking-wide text-[#0A4D68]">
+            MediMedi
+          </span>
+        </div>
+      </Link>
 
       <div className="flex flex-col gap-2 text-black">
         {navigation.map((nav, index) => (
@@ -67,7 +69,7 @@ export default function Sidebar() {
         ))}
       </div>
 
-      <div className="flex items-center justify-between w-full">
+      <div className="flex w-full items-center justify-between">
         <button>
           <div className="flex gap-2 rounded-md px-6 py-3 hover:bg-red-600/90">
             <IconLogout2 />
@@ -76,7 +78,7 @@ export default function Sidebar() {
         </button>
 
         <div>
-            <IconBrandMongodb />
+          <IconBrandMongodb />
         </div>
       </div>
     </div>
