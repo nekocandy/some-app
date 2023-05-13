@@ -11,6 +11,8 @@ import {
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { realm } from "~/lib/mongo/init";
 
 const navigation = [
   {
@@ -48,6 +50,12 @@ const navigation = [
 export default function Sidebar() {
   const router = useRouter();
 
+  useEffect(() => {
+    if (!realm.currentUser && router.pathname !== "/") {
+      void router.push("/");
+    }
+  }, [router]);
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-between py-8 pr-8">
       <Link href="/">
@@ -74,6 +82,7 @@ export default function Sidebar() {
         </div>
       )}
 
+      {/* logout button */}
       <div
         className={clsx(
           "flex w-full items-center justify-between",
@@ -92,6 +101,7 @@ export default function Sidebar() {
         </div>
       </div>
 
+      {/* auth powered by on login screen */}
       <div
         className={clsx(
           "flex w-full items-center justify-center gap-4",
