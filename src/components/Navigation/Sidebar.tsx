@@ -4,11 +4,11 @@ import {
   IconHealthRecognition,
   IconHistory,
   IconId,
-  IconLogout,
   IconLogout2,
   IconMedicalCross,
-  IconUserCircle,
+  IconUserCircle
 } from "@tabler/icons-react";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -75,7 +75,7 @@ export default function Sidebar() {
       )}
 
       <div className="flex w-full items-center justify-between">
-        <button>
+        <button className={clsx(router.pathname === "/" && "hidden")}>
           <div className="flex gap-2 rounded-md px-6 py-3 hover:bg-red-600/90">
             <IconLogout2 />
             <span className="text-lg font-medium tracking-wide ">Logout</span>
