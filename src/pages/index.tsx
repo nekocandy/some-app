@@ -34,13 +34,13 @@ const Home: NextPage = () => {
       return;
     }
 
-    if (mode === "Login") {
-      void router.push("/");
-    }
-
     toast.success(
       mode === "Login" ? "Logged in!" : "Registered! Check email to confirm"
     );
+
+    if (mode === "Login") {
+      await router.push("/dashboard");
+    }
   };
 
   return (
