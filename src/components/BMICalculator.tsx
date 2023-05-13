@@ -6,7 +6,10 @@ export default function BMICalculator() {
   const [bmi, setBMI] = useState(0);
 
   useEffect(() => {
-    if (!height || !weight) return;
+    if (!height || !weight) {
+      setBMI(0);
+      return;
+    }
 
     setBMI(weight / (height * height));
   }, [height, weight]);
