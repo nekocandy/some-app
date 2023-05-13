@@ -1,9 +1,10 @@
+import { IconFidgetSpinner } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Disclaimer from "~/components/HealthStatus/Disclaimer";
-import TestCard from "~/components/HealthStatus/TestCard";
 import HomepageSidebar from "~/components/HompageSidebar";
+import PredictionImage from "~/components/PredictionImage";
 import { availableTests } from "~/lib/tests";
 
 export default function TestModel() {
@@ -16,9 +17,9 @@ export default function TestModel() {
     url: string;
   } | null>(null);
 
-  const { model } = router.query;
-
   useEffect(() => {
+    const { model } = router.query;
+
     if (!model) {
       void router.push("/health-status");
       return;
@@ -32,7 +33,7 @@ export default function TestModel() {
     }
 
     setModelData(testData);
-  }, [model, router]);
+  }, [router]);
 
   return (
     <div className="flex h-full w-full flex-1">
@@ -40,8 +41,14 @@ export default function TestModel() {
         {/*  first columns for cards */}
         <div className="col-span-8 h-full rounded-xl bg-[#1A5F7A] p-12">
           <div className="h-full w-full">
-            <div className="h-full w-full rounded-xl border-2 border-dashed border-black">
-              .
+            <div className="flex h-full w-full items-center justify-center rounded-xl border-2 border-dashed border-black">
+              {!modelData ? (
+                <div>
+                  <IconFidgetSpinner className="anime-spin" />
+                </div>
+              ) : (
+                <PredictionImage data={modelData} />
+              )}
             </div>
           </div>
         </div>

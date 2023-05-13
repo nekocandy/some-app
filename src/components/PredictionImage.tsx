@@ -1,16 +1,29 @@
+import { IconFidgetSpinner } from "@tabler/icons-react";
 import * as tmImage from "@teachablemachine/image";
+import clsx from "clsx";
 import { useEffect, useState } from "react";
+import { cn } from "~/lib/utils";
 
 interface PredictionImageProps {
-  modelURL: string;
+  data: {
+    id: string;
+    name: string;
+    image: string;
+    url: string;
+  };
 }
 
-export default function PredictionImage({ modelURL }: PredictionImageProps) {
+export default function PredictionImage({ data }: PredictionImageProps) {
   const [image, setImage] = useState<File | null>(null);
   const [modelData] = useState({
-    metadata: `${modelURL}metadata.json`,
-    model: `${modelURL}model.json`,
+    metadata: `${data.url}metadata.json`,
+    model: `${data.url}model.json`,
   });
+  const [result, setResult] = useState<{
+    positive: number;
+    negative: number;
+  } | null>(null);
+
   const loadModel = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     const model = await tmImage.load(modelData.model, modelData.metadata);
@@ -27,9 +40,25 @@ export default function PredictionImage({ modelURL }: PredictionImageProps) {
     const bitmap = await createImageBitmap(image);
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-    const result = await model.predict(bitmap);
+    const modelResult = await model.predict(bitmap);
 
-    console.log(result);
+    console.log(modelResult);
+
+    const toUpdate = {
+      positive: 0,
+      negative: 0,
+    };
+
+    modelResult.map((r) => {
+      if (r.className.toLowerCase().includes("positive")) {
+        toUpdate.positive += r.probability * 100;
+      } else {
+        toUpdate.negative += r.probability * 100;
+      }
+    });
+
+    setResult(toUpdate);
+    console.log(modelResult);
   };
 
   useEffect(() => {
@@ -37,22 +66,74 @@ export default function PredictionImage({ modelURL }: PredictionImageProps) {
 
     console.log(image);
     void predictImage(image);
-  }, [image, predictImage]);
-
-  useEffect(() => {
-    void loadModel();
-  }, []);
+  }, [image]);
 
   return (
-    <div>
-      <h1>Image Prediction</h1>
-      <input
-        type="file"
-        onChange={(e) =>
-          setImage(e.currentTarget.files ? e.currentTarget.files[0]! : null)
-        }
-      />
-      <button>Predict</button>
+    <div className="flex w-full flex-col gap-8 px-24 ">
+      <div className="flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-black  bg-[#088395] px-8 py-4">
+        <span className="text-center text-2xl font-bold uppercase text-white">
+          {data.name}
+        </span>
+
+        <div
+          className="flex h-64 w-64 items-center justify-center rounded-md border-2 border-black bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${image ? URL.createObjectURL(image) : ""})`,
+          }}
+        >
+          <input
+            className={cn(image && "hidden")}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.currentTarget.files?.[0] || null)}
+          />
+        </div>
+      </div>
+
+      {/* prediction */}
+      <div className="relative flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-black  bg-[#088395] px-8 py-4">
+        {/* <span className="text-center text-2xl font-bold uppercase text-white">
+          Results
+        </span> */}
+
+        <div
+          className={clsx(
+            result === null ? "block" : "hidden",
+            "absolute bottom-0 left-0 right-0 top-0",
+            "z-10 h-full w-full rounded-xl",
+            "bg-gray-400/50 backdrop-blur-sm backdrop-filter",
+            "flex items-center justify-center"
+          )}
+        >
+          <IconFidgetSpinner className="animate-spin" />
+        </div>
+
+        <div className="flex w-full flex-col items-start justify-center gap-4 px-20 text-white">
+          <div className="flex w-full gap-2">
+            <span className="inline-block pl-2.5 font-bold">Positive:</span>
+            <div className="relative w-full rounded-sm border border-black bg-transparent">
+              <div
+                className="absolute bottom-0 left-0 right-0 top-0 rounded-sm bg-red-600"
+                style={{
+                  width: `${result?.positive || 0}%`,
+                }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="flex w-full gap-2">
+            <span className="font-bold">Negative: </span>
+            <div className="relative w-full rounded-sm border border-black bg-transparent">
+              <div
+                className="absolute bottom-0 left-0 right-0 top-0 rounded-sm bg-lime-600"
+                style={{
+                  width: `${result?.negative || 0}%`,
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
