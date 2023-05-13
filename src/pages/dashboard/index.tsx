@@ -17,7 +17,7 @@ export default function DashboardPage() {
     <div className="flex h-full w-full items-center justify-center gap-4">
       <div className="grid h-full w-full grid-cols-12">
         <div className="col-span-8 rounded-xl bg-[#1A5F7A]">
-          <div className="flex flex-col gap-6 px-4 py-4">
+          <div className="flex flex-col gap-6 px-8 py-4">
             {/* title */}
             <div className="text-2xl font-medium text-white">Dashboard</div>
 
