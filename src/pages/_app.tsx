@@ -15,19 +15,25 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const handleKey = async () => {
     const userLoggedIn = !!realm.currentUser;
     const authToken = localStorage.getItem("authToken");
-    console.log(userLoggedIn, authToken);
     if (authToken || !userLoggedIn) return;
 
     try {
+      const keys = await realm.currentUser?.apiKeys.fetchAll();
+      if (keys?.length && keys[0]?.key) {
+        localStorage.setItem("authToken", keys[0]?.key);
+        return;
+      }
       const apiKey = await realm.currentUser?.apiKeys.create(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${realm.currentUser.profile.email?.replace("@", "-").replace(".", "-")}-${Date.now()}`
+        `${realm.currentUser.profile.email
+          ?.replace("@", "-")
+          .replace(".", "-")}-${Date.now()}`
       );
 
       if (!apiKey)
         throw new Error("Error while creating API key, no key from MongoDB");
 
-        console.log(apiKey);
+      console.log(apiKey);
 
       localStorage.setItem("authToken", apiKey.key);
     } catch (error) {
