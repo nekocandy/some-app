@@ -136,8 +136,10 @@ export default function PredictionImage({ data }: PredictionImageProps) {
       </div>
 
       {/* include in report button */}
-      <div className="w-full flex items-center justify-center">
-        <button className="rounded-lg bg-[#F5F3C1] bg-opacity-100 hover:bg-opacity-70 px-8 py-3 border border-black">Include in Report</button>
+      <div className="flex w-full items-center justify-center">
+        <button className="rounded-lg border border-black bg-[#F5F3C1] bg-opacity-100 px-8 py-3 hover:bg-opacity-70">
+          Include in Report
+        </button>
       </div>
     </div>
   );
