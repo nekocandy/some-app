@@ -25,9 +25,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       }
       const apiKey = await realm.currentUser?.apiKeys.create(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${realm.currentUser.profile.email
-          ?.replaceAll("@", "-")
-          .replaceAll(".", "-")}-${Date.now()}`
+        `${realm.currentUser.profile.email?.replaceAll(
+          /[^A-Za-z0-9_-]/g,
+          "-"
+        )}-${Date.now()}`
       );
 
       if (!apiKey)
