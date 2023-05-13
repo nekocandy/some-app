@@ -1,9 +1,28 @@
-import { IconBrandMongodb, IconHeartbeat, IconPencilPlus, IconPlus, IconRefresh } from "@tabler/icons-react";
+import {
+  IconArrowBadgeRight,
+  IconHeartbeat,
+  IconPencilPlus,
+  IconPlus,
+  IconRefresh,
+} from "@tabler/icons-react";
 import router from "next/router";
 import { useEffect } from "react";
 
-import { realm } from "~/lib/mongo/init";
 import { DayPicker } from "react-day-picker";
+import { realm } from "~/lib/mongo/init";
+
+const appointments = [
+  {
+    date: new Date(),
+    doctor: "Dr. John Doe",
+    hospital: "Apollo Hospital",
+  },
+  {
+    date: new Date(),
+    doctor: "Dr. John Doe",
+    hospital: "Apollo Hospital",
+  },
+];
 
 export default function DashboardPage() {
   // verify auth status
@@ -28,7 +47,7 @@ export default function DashboardPage() {
               </span>
             </div>
 
-            <div className="flex w-full justify-center items-center">
+            <div className="flex w-full items-center justify-center">
               <DayPicker
                 className="rounded-md border bg-[#c1f5a7] px-4 py-2"
                 mode="single"
@@ -45,6 +64,22 @@ export default function DashboardPage() {
                 <div className="rounded-full bg-[#002b5b] p-4">
                   <IconPencilPlus className="h-8 w-8" color="#57C5B6" />
                 </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <span className="text-xl text-white">Upcoming appointments</span>
+              <div className="rounded-xl bg-[#088395] px-4 py-4 flex flex-col gap-4">
+                {appointments.map((appointment, index) => (
+                  <div
+                    key={index}
+                    className="flex w-full items-center justify-between text-[#C1F5A7] text-lg"
+                  >
+                    {appointment.doctor}
+                    <IconArrowBadgeRight color="#C1F5A7" />
+                    {appointment.date.toDateString()}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
