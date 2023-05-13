@@ -7,6 +7,7 @@ import Sidebar from "~/components/Navigation/Sidebar";
 
 import "~/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import 'react-day-picker/dist/style.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => (
   <div className="h-screen bg-[#002B5B] font-poppins">
