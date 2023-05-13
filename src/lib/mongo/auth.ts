@@ -1,34 +1,23 @@
+import * as Realm from "realm-web";
 import { realm } from "./init";
 
+export const loginUser = async (email: string, password: string) => {
+  await realm.logIn(Realm.Credentials.emailPassword(email, password));
+  return 1;
+};
+
 export const createUser = async (email: string, password: string) => {
-  try {
-    await realm.emailPasswordAuth.registerUser({ email, password });
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    console.log("Failed to log in", error.message);
-  }
+  await realm.emailPasswordAuth.registerUser({ email, password });
+  return 1;
 };
 
 export const resendConfirmationEmail = async (email: string) => {
-  try {
-    await realm.emailPasswordAuth.resendConfirmationEmail({ email });
-    console.log("Successfully resent the confirmation email!");
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    console.log("Failed to resend the confirmation email!", error.message);
-  }
+  await realm.emailPasswordAuth.resendConfirmationEmail({ email });
+  console.log("Successfully resent the confirmation email!");
 };
 
 export const verifyUser = async (token: string, tokenId: string) => {
-  try {
-    await realm.emailPasswordAuth.confirmUser({ token, tokenId });
+  await realm.emailPasswordAuth.confirmUser({ token, tokenId });
 
-    console.log("Successfully verified user!");
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    console.log("Failed to verify user in", error.message);
-  }
+  console.log("Successfully verified user!");
 };

@@ -1,5 +1,7 @@
 import { type NextPage } from "next";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { createUser, loginUser } from "~/lib/mongo/auth";
 import { realm } from "~/lib/mongo/init";
 
 const Home: NextPage = () => {
@@ -15,6 +17,23 @@ const Home: NextPage = () => {
     setEmail("");
     setPassword("");
     setMode(mode === "Login" ? "Register" : "Login");
+  };
+
+  const handleContinueClick = async () => {
+    const functionToCall = mode === "Login" ? loginUser : createUser;
+
+    try {
+      await functionToCall(email, password);
+    } catch (error) {
+      console.error(error);
+      // @ts-expect-error error is a http body message
+      toast.error(error.message as string);
+      return;
+    }
+
+    toast.success(
+      mode === "Login" ? "Logged in!" : "Registered! Check email to confirm"
+    );
   };
 
   return (
@@ -53,7 +72,10 @@ const Home: NextPage = () => {
             {mode === "Login" ? "Register" : "Login"}
           </button>
 
-          <button className="w-full rounded-r-md bg-[#159895] py-4">
+          <button
+            onClick={() => void handleContinueClick()}
+            className="w-full rounded-r-md bg-[#159895] py-4"
+          >
             Continue
           </button>
         </div>
