@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 import { DayPicker } from "react-day-picker";
 import BMICalculator from "~/components/BMICalculator";
+import Certificates from "~/components/Certificates";
 import { realm } from "~/lib/mongo/init";
 
 const appointments = [
@@ -117,6 +118,9 @@ export default function DashboardPage() {
 
             {/* bmi */}
             <BMICalculator />
+
+            {/* certificates */}
+            <Certificates />
           </div>
         </div>
       </div>
