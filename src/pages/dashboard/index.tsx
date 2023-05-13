@@ -89,7 +89,7 @@ export default function DashboardPage() {
 
         {/* right bar */}
         <div className="col-span-4 rounded-xl bg-[#088395]">
-          <div className="flex h-full w-full flex-col items-center gap-6 px-6 pt-32">
+          <div className="flex h-full w-full flex-col items-center gap-6 px-6 pt-20">
             <div className="flex w-full flex-col rounded-xl bg-[#134a52]">
               <div className="flex w-full items-center justify-center gap-4 rounded-lg bg-[#57c5b6] py-8 text-black">
                 <div>
