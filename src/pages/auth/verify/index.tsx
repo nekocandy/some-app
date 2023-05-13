@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { verifyUser } from "~/lib/mongo/auth";
 
 export default function Verify() {
@@ -7,10 +8,24 @@ export default function Verify() {
 
   const { token, tokenId } = router.query;
 
+  const verifyAsync = async () => {
+    try {
+      await verifyUser(token as string, tokenId as string);
+    } catch (error) {
+      console.error("Error while verifying user: ", error);
+
+      // @ts-expect-error error is a http body message
+      toast.error(error.message as string);
+      return;
+    }
+
+    toast.success("Verified!");
+  };
+
   useEffect(() => {
     if (!token || !tokenId) return;
 
-    void verifyUser(token as string, tokenId as string);
+    void verifyAsync();
   }, [token, tokenId]);
 
   return (
