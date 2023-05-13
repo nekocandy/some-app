@@ -66,7 +66,7 @@ const Home: NextPage = () => {
 
         <div className="flex rounded-md border">
           <button
-            className="w-full rounded-l-md border-r bg-yellow-500 py-4"
+            className="w-full rounded-l-md border-r bg-[#159895] py-4"
             onClick={toggleMode}
           >
             {mode === "Login" ? "Register" : "Login"}
@@ -74,7 +74,7 @@ const Home: NextPage = () => {
 
           <button
             onClick={() => void handleContinueClick()}
-            className="w-full rounded-r-md bg-[#159895] py-4"
+            className="w-full rounded-r-md bg-yellow-500  py-4"
           >
             Continue
           </button>
