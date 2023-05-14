@@ -2,15 +2,6 @@ import { IconInfoCircle, IconPlayerPlayFilled } from "@tabler/icons-react";
 import { toast } from "react-toastify";
 import Disclaimer from "~/components/HealthStatus/Disclaimer";
 import HomepageSidebar from "~/components/HompageSidebar";
-import { type ProfileData, setProfileData } from "~/lib/mongo/database/profile";
-
-interface TestData {
-  testId: string;
-  imageBase64: string;
-  result: { positive: number; negative: number };
-  includeInReport: boolean;
-  createdAt: Date;
-}
 
 export default function Prognosis() {
   const sendData = () => {

@@ -6,9 +6,9 @@ import BMICalculator from "~/components/BMICalculator";
 import Certificates from "~/components/Certificates";
 import HomepageSidebar from "~/components/HompageSidebar";
 import {
-  type ProfileData,
   getProfileData,
   setProfileData,
+  type ProfileData,
 } from "~/lib/mongo/database/profile";
 import { realm } from "~/lib/mongo/init";
 
