@@ -35,7 +35,7 @@ export default function TestModel() {
     }
 
     setModelData(testData);
-  }, [router]);
+  }, [router.isReady, router, router.query]);
 
   return (
     <div className="flex h-full w-full flex-1">
