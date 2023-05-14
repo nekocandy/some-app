@@ -1,20 +1,14 @@
-import { getDb } from ".";
+import { getCollection, getDb } from ".";
 import { realm } from "../init";
 
 const userId = realm.currentUser?.id;
-
-const getCollection = () => {
-    const db = getDb()
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-  return db.collection("bmi");
-};
 
 export const getBmiFromDatabase = async (): Promise<{
   height: number;
   weight: number;
 }> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const bmiCollection = getCollection();
+  const bmiCollection = getCollection("bmi");
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   const bmi = await bmiCollection.findOne({ userId });
 
@@ -35,7 +29,7 @@ export const getBmiFromDatabase = async (): Promise<{
 
 export const setBmiToDatabase = async (height: number, weight: number) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const bmiCollection = getCollection();
+  const bmiCollection = getCollection("bmi");
   // create or update the user's height and weight
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   await bmiCollection.updateOne(

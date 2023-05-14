@@ -12,3 +12,9 @@ export const getDb = () => {
 
   return db;
 };
+
+export const getCollection = (collectionName: string) => {
+  const db = getDb()
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+return db.collection(collectionName);
+};
