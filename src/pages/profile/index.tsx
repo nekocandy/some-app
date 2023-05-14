@@ -101,8 +101,8 @@ export default function ProfilePage() {
 
               <BMICalculator />
 
-              <div className="w-full border-2 border-black rounded-2xl">
-                <Certificates />
+              <div className="w-full rounded-2xl border-2 border-black">
+                <Certificates uploadButton={true} />
               </div>
             </div>
           </div>
