@@ -93,6 +93,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.15.5
     version: 18.15.5
+  '@types/node-wit':
+    specifier: ^6.0.1
+    version: 6.0.1
   '@types/prettier':
     specifier: ^2.7.2
     version: 2.7.2
@@ -655,6 +658,10 @@ packages:
       '@types/node': 18.15.5
       form-data: 3.0.1
     dev: false
+
+  /@types/node-wit@6.0.1:
+    resolution: {integrity: sha512-Wa+YBagcCeE9vdKnRRlJZUh1SgH6p0a9urFmiF1EF7EKSORmx3/ATEPxsYB5xr/OktAxEYEHhA+/tlon+6XnUQ==}
+    dev: true
 
   /@types/node@18.15.5:
     resolution: {integrity: sha512-Ark2WDjjZO7GmvsyFFf81MXuGTA/d6oP38anyxWOL6EREyBKAxKoFHwBhaZxCfLRLpO8JgVXwqOwSwa7jRcjew==}
