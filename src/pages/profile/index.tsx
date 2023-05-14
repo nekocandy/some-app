@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import BMICalculator from "~/components/BMICalculator";
 import Certificates from "~/components/Certificates";
-import Disclaimer from "~/components/HealthStatus/Disclaimer";
 import HomepageSidebar from "~/components/HompageSidebar";
 import {
-  ProfileData,
+  type ProfileData,
   getProfileData,
   setProfileData,
 } from "~/lib/mongo/database/profile";
@@ -58,7 +57,7 @@ export default function ProfilePage() {
       <div className="grid grid-cols-12 gap-4">
         {/*  first columns for cards */}
         <div className="col-span-8 rounded-xl bg-[#1A5F7A]">
-          <div className="flex h-full flex-col items-center justify-center gap-8 overflow-y-auto px-6 py-8 text-white">
+          <div className="mb-4 flex h-full flex-col items-center justify-center gap-8 px-6 py-8 text-white">
             <div className="flex items-center gap-2 text-center text-2xl font-bold tracking-wide">
               Profile
             </div>
