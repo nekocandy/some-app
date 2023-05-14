@@ -39,7 +39,9 @@ export default function History() {
 
             <div className="flex h-full w-full flex-wrap justify-center gap-4">
               {testData.length ? (
-                <DataTable data={testData} />
+                <div>
+                  <DataTable data={testData} />
+                </div>
               ) : (
                 <div className="w-1/2">
                   <Disclaimer
