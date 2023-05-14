@@ -8,7 +8,6 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
-    IMGUR_CLIENT_ID: z.string().min(1),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -28,7 +27,6 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
-    IMGUR_CLIENT_ID: process.env.IMGUR_CLIENT_ID,
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_REALM_APP_ID: process.env.NEXT_PUBLIC_REALM_APP_ID,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,

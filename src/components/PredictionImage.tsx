@@ -23,8 +23,6 @@ export default function PredictionImage({ data }: PredictionImageProps) {
     model: `${data.url}model.json`,
   });
 
-  const useUploadMutation = api.fileRouter.upload.useMutation();
-
   const [result, setResult] = useState<{
     positive: number;
     negative: number;
