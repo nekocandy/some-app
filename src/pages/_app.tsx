@@ -51,8 +51,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <div className="h-screen bg-[#002B5B] font-poppins">
       <Head>
-        <title>MediMate - Thicc Thighs Save Lives</title>
-        <meta name="description" content="Thicc Thigh Save Live" />
+        <title>MediMate - Healthcare made smarter</title>
+        <meta name="description" content="Healthcare made smarter - Your AI mate for life!" />
         <link rel="icon" href="/favicon.png" />
       </Head>
 
