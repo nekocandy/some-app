@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import BMICalculator from "~/components/BMICalculator";
+import Certificates from "~/components/Certificates";
 import Disclaimer from "~/components/HealthStatus/Disclaimer";
 import HomepageSidebar from "~/components/HompageSidebar";
 import {
@@ -99,6 +100,10 @@ export default function ProfilePage() {
               {/* bmi */}
 
               <BMICalculator />
+
+              <div className="w-full border-2 border-black rounded-2xl">
+                <Certificates />
+              </div>
             </div>
           </div>
         </div>
