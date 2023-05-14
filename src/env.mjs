@@ -9,6 +9,7 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "test", "production"]),
+    WIT_ACCESS_TOKEN: z.string().min(1),
   },
 
   /**
@@ -29,6 +30,7 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_REALM_APP_ID: process.env.NEXT_PUBLIC_REALM_APP_ID,
+    WIT_ACCESS_TOKEN: process.env.WIT_ACCESS_TOKEN,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
 });
