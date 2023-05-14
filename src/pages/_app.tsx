@@ -1,6 +1,7 @@
 import { type AppType } from "next/app";
 
 import { ToastContainer, toast } from "react-toastify";
+import NextNProgress from "nextjs-progressbar";
 
 import { api } from "~/utils/api";
 import Sidebar from "~/components/Navigation/Sidebar";
@@ -52,7 +53,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <div className="h-screen bg-[#002B5B] font-poppins">
       <Head>
         <title>MediMate - Healthcare made smarter</title>
-        <meta name="description" content="Healthcare made smarter - Your AI mate for life!" />
+        <meta
+          name="description"
+          content="Healthcare made smarter - Your AI mate for life!"
+        />
         <link rel="icon" href="/favicon.png" />
       </Head>
 
@@ -67,6 +71,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       </main>
 
       <ToastContainer />
+      <NextNProgress height={5} />
     </div>
   );
 };
