@@ -20,6 +20,7 @@ export const addTest = async (
     imageBase64,
     result,
     includeInReport,
+    createdAt: new Date(),
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -31,6 +32,7 @@ interface TestData {
   imageBase64: string;
   result: { positive: number; negative: number };
   includeInReport: boolean;
+  createdAt: Date;
 }
 
 export const getTests = async (): Promise<TestData[]> => {

@@ -1,4 +1,4 @@
-import { IconCertificate, IconDownload, IconFileDownload } from "@tabler/icons-react";
+import { IconCertificate, IconFileDownload } from "@tabler/icons-react";
 
 const certificates = [
   {

@@ -7,7 +7,7 @@ interface TestCardProps {
   url: string;
 }
 
-export default function TestCard({ name, image, id, url }: TestCardProps) {
+export default function TestCard({ name, image, id }: TestCardProps) {
   return (
     <Link
       className="relative rounded-md bg-[#088395] bg-cover bg-center px-4 py-4"

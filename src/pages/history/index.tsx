@@ -9,6 +9,7 @@ interface TestData {
   imageBase64: string;
   result: { positive: number; negative: number };
   includeInReport: boolean;
+  createdAt: Date;
 }
 
 export default function History() {
@@ -41,7 +42,10 @@ export default function History() {
                 <DataTable data={testData} />
               ) : (
                 <div className="w-1/2">
-                  <Disclaimer title="No tests found" titleClassName="text-red-900" />
+                  <Disclaimer
+                    title="No tests found"
+                    titleClassName="text-red-900"
+                  />
                 </div>
               )}
             </div>

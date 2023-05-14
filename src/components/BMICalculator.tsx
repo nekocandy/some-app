@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { IconFidgetSpinner } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
