@@ -68,7 +68,7 @@ export default function Sidebar() {
         <div className="flex items-center gap-2">
           <div className="h-10 w-10 rounded-full bg-[#0A4D68]" />
           <span className="text-xl font-bold tracking-wide text-[#0A4D68]">
-            MediMedi
+            MediMate
           </span>
         </div>
       </Link>
