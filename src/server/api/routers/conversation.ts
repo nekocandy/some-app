@@ -27,6 +27,8 @@ export const conversationRouter = createTRPCRouter({
             location: reply.entities["wit$location:location"][0].value,
           },
         };
+      } else {
+        return null;
       }
     }),
 });
