@@ -1,5 +1,5 @@
 import { IconSend } from "@tabler/icons-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Disclaimer from "~/components/HealthStatus/Disclaimer";
 import HomepageSidebar from "~/components/HompageSidebar";

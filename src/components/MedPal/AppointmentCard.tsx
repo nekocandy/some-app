@@ -1,8 +1,7 @@
 import {
-  IconCheck,
-  IconClock,
-  IconClock2,
-  IconLocation,
+    IconCheck,
+    IconClock,
+    IconLocation
 } from "@tabler/icons-react";
 import { format } from "date-fns";
 
