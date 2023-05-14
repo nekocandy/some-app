@@ -27,12 +27,19 @@ export default function PredictionImage({ data }: PredictionImageProps) {
     negative: number;
   } | null>(null);
 
-  const uploadImage = async () => {
-    if (!image || !result) return;
+  const uploadImage = async (toUpdate: {
+    positive: number;
+    negative: number;
+  }) => {
+    if (!image) {
+      toast.error("No image or result found");
+      console.log(image, result);
+      return;
+    }
 
     const base64: string = (await toBase64(image)) as string;
 
-    const insertedId = await addTest(data.id, base64, result, false);
+    const insertedId = await addTest(data.id, base64, toUpdate, false);
 
     toast.success(`Uploaded insertedId: ${insertedId}`);
   };
@@ -72,7 +79,7 @@ export default function PredictionImage({ data }: PredictionImageProps) {
 
     setResult(toUpdate);
     console.log(modelResult);
-    void uploadImage();
+    void uploadImage(toUpdate);
   };
 
   useEffect(() => {
@@ -80,7 +87,7 @@ export default function PredictionImage({ data }: PredictionImageProps) {
 
     console.log(image);
     void predictImage(image);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
 
   return (

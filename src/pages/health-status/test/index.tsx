@@ -18,6 +18,8 @@ export default function TestModel() {
   } | null>(null);
 
   useEffect(() => {
+    if (!router.isReady) return;
+
     const { model } = router.query;
 
     if (!model) {
