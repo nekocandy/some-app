@@ -76,16 +76,7 @@ export default function Helplines() {
         </div>
 
         <div className="col-span-4 rounded-xl bg-[#088395]">
-          <HomepageSidebar
-            lastElement={
-              <Disclaimer
-                className="font-bold"
-                title="Disclaimer"
-                message=" Our model is trained on a certain limited amount of data, for further treatment, refer to a healthcare professional"
-                messageClassName="font-semibold"
-              />
-            }
-          />
+          <HomepageSidebar />
         </div>
       </div>
     </div>
