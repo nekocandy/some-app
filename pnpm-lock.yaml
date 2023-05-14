@@ -52,6 +52,9 @@ dependencies:
   next:
     specifier: ^13.4.1
     version: 13.4.1(react-dom@18.2.0)(react@18.2.0)
+  next-progress:
+    specifier: ^2.3.1
+    version: 2.3.1(next@13.4.1)(react@18.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -2458,6 +2461,17 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
+  /next-progress@2.3.1(next@13.4.1)(react@18.2.0):
+    resolution: {integrity: sha512-agjfECh6VQaD2VXg/u8k3fsVStrxE1atdXeWhOCh+HBty7bxh92w5Wy3SxI86dZO+xK5+78sNLXQm1cikFCDPw==}
+    peerDependencies:
+      next: '>=6.0.0'
+      react: '>=16.0.0'
+    dependencies:
+      next: 13.4.1(react-dom@18.2.0)(react@18.2.0)
+      nprogress: 0.2.0
+      react: 18.2.0
+    dev: false
+
   /next@13.4.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-JBw2kAIyhKDpjhEWvNVoFeIzNp9xNxg8wrthDOtMctfn3EpqGCmW0FSviNyGgOSOSn6zDaX48pmvbdf6X2W9xA==}
     engines: {node: '>=16.8.0'}
@@ -2541,6 +2555,10 @@ packages:
     dependencies:
       path-key: 4.0.0
     dev: true
+
+  /nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
