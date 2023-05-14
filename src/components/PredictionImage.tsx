@@ -2,6 +2,8 @@ import { IconFidgetSpinner } from "@tabler/icons-react";
 import * as tmImage from "@teachablemachine/image";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { addTest } from "~/lib/mongo/database/tests";
 import { cn, toBase64 } from "~/lib/utils";
 import { api } from "~/utils/api";
 
@@ -29,35 +31,13 @@ export default function PredictionImage({ data }: PredictionImageProps) {
   } | null>(null);
 
   const uploadImage = async () => {
-    if (!image) return;
-
-    const formData = new FormData();
-    formData.append("image", image);
-
-    // const _ = await useUploadMutation.mutateAsync({
-    //   formData: formData,
-    //   fileName: image.name,
-    //   contentType: image.type
-    // });
+    if (!image || !result) return;
 
     const base64: string = (await toBase64(image)) as string;
-    console.log(base64);
 
-    const imageElement = new Image();
-    imageElement.src = base64;
+    const insertedId = await addTest(data.id, base64, result, false);
 
-    document.body.appendChild(
-      imageElement
-    );
-
-    // const res = await fetch("https://api.imgur.com/3/image", {
-    //   method: "POST",
-    //   headers: {
-    //     Authorization: `Client-ID ${env.NEXT_PUBLIC_IMGUR_CLIENT_ID}`,
-    //   },
-    //   body: formData,
-    //   redirect: "follow",
-    // });
+    toast.success(`Uploaded insertedId: ${insertedId}`);
   };
 
   const loadModel = async () => {
