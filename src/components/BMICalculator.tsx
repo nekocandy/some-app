@@ -49,7 +49,7 @@ export default function BMICalculator() {
   }, [height, weight]);
 
   return (
-    <div className="relative flex w-full flex-col items-center gap-4 rounded-lg border-4 border-[#002B5B] bg-[#05BFDB] px-4 py-4">
+    <div className="relative flex w-full flex-col items-center gap-4 rounded-lg border-4 border-[#002B5B] bg-[#05BFDB] px-4 py-4 text-black">
       <div
         className={clsx(
           "absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-lg",

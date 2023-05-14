@@ -1,4 +1,4 @@
-import { getCollection, getDb } from ".";
+import { getCollection } from ".";
 import { realm } from "../init";
 
 const userId = realm.currentUser?.id;
