@@ -2,7 +2,8 @@ import { IconFidgetSpinner } from "@tabler/icons-react";
 import * as tmImage from "@teachablemachine/image";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
-import { cn } from "~/lib/utils";
+import { cn, toBase64 } from "~/lib/utils";
+import { api } from "~/utils/api";
 
 interface PredictionImageProps {
   data: {
@@ -19,10 +20,45 @@ export default function PredictionImage({ data }: PredictionImageProps) {
     metadata: `${data.url}metadata.json`,
     model: `${data.url}model.json`,
   });
+
+  const useUploadMutation = api.fileRouter.upload.useMutation();
+
   const [result, setResult] = useState<{
     positive: number;
     negative: number;
   } | null>(null);
+
+  const uploadImage = async () => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    // const _ = await useUploadMutation.mutateAsync({
+    //   formData: formData,
+    //   fileName: image.name,
+    //   contentType: image.type
+    // });
+
+    const base64: string = (await toBase64(image)) as string;
+    console.log(base64);
+
+    const imageElement = new Image();
+    imageElement.src = base64;
+
+    document.body.appendChild(
+      imageElement
+    );
+
+    // const res = await fetch("https://api.imgur.com/3/image", {
+    //   method: "POST",
+    //   headers: {
+    //     Authorization: `Client-ID ${env.NEXT_PUBLIC_IMGUR_CLIENT_ID}`,
+    //   },
+    //   body: formData,
+    //   redirect: "follow",
+    // });
+  };
 
   const loadModel = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
@@ -59,6 +95,7 @@ export default function PredictionImage({ data }: PredictionImageProps) {
 
     setResult(toUpdate);
     console.log(modelResult);
+    void uploadImage();
   };
 
   useEffect(() => {
