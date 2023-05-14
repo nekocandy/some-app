@@ -1,3 +1,5 @@
+import { IconFidgetSpinner } from "@tabler/icons-react";
+import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getBmiFromDatabase, setBmiToDatabase } from "~/lib/mongo/database/bmi";
@@ -5,17 +7,23 @@ import { realm } from "~/lib/mongo/init";
 
 export default function BMICalculator() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [bmi, setBMI] = useState(0);
 
   async function getBmi() {
     const bmiData = await getBmiFromDatabase();
-    if (!bmiData) return;
+    if (!bmiData) {
+      setLoading(false);
+      return;
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     setHeight(bmiData.height);
     setWeight(bmiData.weight);
+
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -40,7 +48,17 @@ export default function BMICalculator() {
   }, [height, weight]);
 
   return (
-    <div className="flex w-full flex-col items-center gap-4 rounded-lg border-4 border-[#002B5B] bg-[#05BFDB] px-4 py-4">
+    <div className="relative flex w-full flex-col items-center gap-4 rounded-lg border-4 border-[#002B5B] bg-[#05BFDB] px-4 py-4">
+      <div
+        className={clsx(
+          "absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-lg",
+          !loading && "hidden",
+          "bg-gray-500/30 backdrop-blur-sm",
+          "flex items-center justify-center"
+        )}
+      >
+        <IconFidgetSpinner className="h-12 w-12 animate-spin text-gray-700 duration-1000" />
+      </div>
       <span className="text-lg font-semibold">Body Mass Index</span>
       <div className="flex gap-8 px-6">
         <input

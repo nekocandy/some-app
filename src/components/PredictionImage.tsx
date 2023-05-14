@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { addTest } from "~/lib/mongo/database/tests";
 import { cn, toBase64 } from "~/lib/utils";
-import { api } from "~/utils/api";
 
 interface PredictionImageProps {
   data: {
@@ -81,6 +80,7 @@ export default function PredictionImage({ data }: PredictionImageProps) {
 
     console.log(image);
     void predictImage(image);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
 
   return (
