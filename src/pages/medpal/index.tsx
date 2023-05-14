@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Disclaimer from "~/components/HealthStatus/Disclaimer";
 import HomepageSidebar from "~/components/HompageSidebar";
+import AppointmentCard from "~/components/MedPal/AppointmentCard";
 import ChatBubble from "~/components/MedPal/ChatBubble";
 import { getTests } from "~/lib/mongo/database/tests";
 import { api } from "~/utils/api";
@@ -18,10 +19,7 @@ interface TestData {
 export default function History() {
   const [message, setMessage] = useState<string>("");
   const [testData, setTestData] = useState<TestData[]>([]);
-  const [messages, setMessages] = useState<JSX.Element[]>([
-    <ChatBubble key={12} message="Hello" />,
-    <ChatBubble key={1} message="SSup" />,
-  ]);
+  const [messages, setMessages] = useState<JSX.Element[]>([]);
 
   const getResponseMutation = api.conversation.message.useMutation();
 
@@ -37,16 +35,30 @@ export default function History() {
   const getResponse = async () => {
     if (!message) return;
 
+    setMessages((prev) => [
+      ...prev,
+      <ChatBubble key={prev.length} message={message} />,
+    ]);
+
     const response = await getResponseMutation.mutateAsync({ message });
     if (!response) {
       toast.error("Error while getting response");
       return;
     }
 
-    // setMessages((prev) => [
-    //   ...prev,
-    //   <ChatBubble key={prev.length} isUser={false} message={response} />,
-    // ]);
+    setMessages((prev) => [
+      ...prev,
+      <AppointmentCard
+        key={prev.length}
+        message={message}
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        date={response.values.time}
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        location={response.values.location}
+      />,
+    ]);
+
+    setMessage("");
   };
 
   return (
