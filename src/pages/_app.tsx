@@ -53,6 +53,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Head>
         <title>MediMate - Thicc Thighs Save Lives</title>
         <meta name="description" content="Thicc Thigh Save Live" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <main className="flex h-screen gap-2">
